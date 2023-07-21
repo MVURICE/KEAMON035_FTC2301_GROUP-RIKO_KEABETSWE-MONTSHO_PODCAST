@@ -1,0 +1,205 @@
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+/* ***************************************Nvaigtion bar styling ************************************/
+
+
+/* To-do    
+  change font family
+  change font size of the search button
+ */
+
+header {
+  height: 4em;
+  padding: 1rem 3rem;
+  width: 100%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-size: 1.6vw;
+  background-image: url(https://s3-alpha-sig.figma.com/img/c1b8/f2ad/362d08192e3fa2da0d429a0ec868a981?Expires=1690761600&Signature=EFwL-UvYgMVs4P0MBSaCUWFwSoKhujZAyLtM3mbWjX4e3xJiaFABnDJD~ue7X2eCzQvV3JIf44ymU8wnf1jTuadwrjVUGKINkOgfdHiBk3P7wy2P0Me7m9mW1-Quy3dQShqIy2dUOcmNIa3bkR5XnsYM~3sgAVrXuYax4E4xcr3tmcqCpQA3Mvl7K0acnvTAO8Kzsux0l~-ncHkvM6huiQk3XzfmMCRknz5-Egq~2sl2Z16Z~GUfZz8-iNRhwVCbSJbj9DnRh6xogyz0-FPktFDdCOPw0U7VAw-jhqIoK0dAcJ2AZJZcMCYWMsOi4wQEJLA6qggE72ZjKfgvkEI7MQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center
+}
+
+
+.navbar{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.search-input{
+  width:  15vw;
+  height: 2.5vw;
+  border-radius: 1.15rem;
+  padding: 0.3rem 0.2rem;
+  text-indent: 1vw;
+  border:  none;
+}
+
+
+.menu-links{
+  flex: 3;
+  display: flex;
+  justify-content: center; 
+} 
+
+.menu-links > li{
+  list-style-type: none;
+  margin: 0 0.6rem;
+  font-weight: 800;
+}
+
+
+/* Set initial image size for larger screens */
+.logo-container img {
+  max-width: 100%; /* Ensure the image does not exceed its original size */
+  height: auto; /* Maintain the image's aspect ratio */
+}
+
+/* Adjust image size for smaller screens */
+@media screen and (max-width: 768px) {
+  .logo-container img {
+    max-width: 60%; /* Decrease the image size for smaller screens */
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .logo-container img {
+    max-width: 40%; /* Decrease the image size for smaller screens */
+  }
+}
+
+
+/* ************************End of Navigation bar **************************************8**/
+
+.body{
+background-color: #E2ADAD;
+font-size: 1.5vw;
+/* font-family: 'Merriweather', serif; */
+font-family: 'Roboto', sans-serif;
+}
+
+
+/* ****************styling of cards **************** */
+/* .card-image{
+  width: 12vw;
+  height: 12vw;
+}
+
+.shows-preview{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title{
+  text-align: center;
+  color: white;
+  flex: 0.5;
+}
+
+.card{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  border: 1px solid black;
+  margin: 0.5vw;
+  width: 20vw;
+  min-width: 100px;
+  padding: 0.5vw;
+  height: 28vw;
+} */
+
+
+
+.card-image {
+  width: 17vw;
+  height: 13vw;
+  min-width: 100px;
+  min-height: 60px;
+  border-radius: 0.6rem;
+}
+
+.shows-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title {
+  text-align: center;
+  color: #6D0909;
+  flex: 0.5;
+
+  margin: auto 0px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  /* border: 1px solid black; */
+  border-radius: 0.6rem;
+  box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw rgba(204, 27, 27, 0.25);
+  margin: 0.8vw;
+  width: 20vw;
+  min-width: 120px;
+  padding: 0.5vw;
+  height: 28vw;
+}
+
+.card-info{
+  margin-bottom: 1vw;
+}
+
+/* .favourite{
+  position: absolute;
+  width: 2vw;
+  margin-left: 6vw;
+} */
+/* ******************************************************* */
+
+
+.loading{
+  text-align: center;
+  margin: 5vw auto;
+  font-size: 8vw;
+  font-weight: 900;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
