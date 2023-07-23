@@ -377,6 +377,8 @@ import React, { useEffect, useState } from 'react';
 import logo from './assets/Logo.png';
 import Card from './components/Card';
 import SearchBar from './components/SearchBar';
+import SeasonCard from './components/SeasonCard';
+import Episodes from './components/Episodes';
 
 // import './App.css';
 
@@ -423,6 +425,8 @@ function App() {
       handleShow={() => handleSelectedShow(show.id)}
     />
   ));
+ 
+
 
   return (
     <div className='body'>
@@ -457,8 +461,50 @@ function Navbar() {
   );
 }
 
+// const showSeasons = show
+
+
+ 
 function ShowDetails({ show }) {
+
+  const [selectedSeason, setSelectedSeason] = useState(null);
+
+  function handleSeasonClick(season) {
+    console.log('Clicked season:', season);
+    // Add any other logic related to handling the clicked season here
+    setSelectedSeason(season); // Set the selected season
+  }
+
+  // function handleSeasonClick(season) {
+  //   console.log('Clicked season:', season);
+  //   // Add any other logic related to handling the clicked season here
+  //   return(
+  //     <div className="episodes">
+  //         <div className="season-hero-banner">
+  //             <div className="episode-image-container">
+  //                 <img src={season.image} />
+  //             </div>
+  //             <div className="season-description">
+  //                 <h3>{season.title}</h3>
+  //                 <p>{season.episodes} Episodes</p>
+  //             </div>
+  //         </div>
+  //         <div className="show-episodes">
+              
+
+  //         </div>
+
+  //     </div>
+  // )
+
+    
+  // }
+
+
+
+
   return (
+    <div className='seasons'>
     <div className='show-hero-banner'>
       <div className='show-image-container'>
         <img className='show-image' src={show.image} alt={show.title} />
@@ -478,8 +524,54 @@ function ShowDetails({ show }) {
         <br />
         <p className='description-paragraph'>{show.description}</p>
       </section>
+    
+      
+      {/* Display the seasons */}
+     
+    </div>
+    <div className='show-seasons'>
+        {!selectedSeason && show.seasons && show.seasons.map((season) => (
+          <SeasonCard  
+            key={season.id} 
+            title={season.title}
+            image={season.image}
+            episodes={season.episodes.length}
+            handleClick={()=>handleSeasonClick(season)} // Pass the season object to handleSeasonClick
+          />
+        ))}
+      </div>
+      {/* Display the selected season */}
+      {selectedSeason && 
+        <div className="episodes">
+          <div className="season-hero-banner">
+            <div className="episode-image-container">
+              <img src={selectedSeason.image} alt={selectedSeason.title} />
+            </div>
+            <div className="season-description">
+              <h3>{selectedSeason.title}</h3>
+              <p>{selectedSeason.episodes.length} Episodes</p>
+            </div>
+          </div>
+          <div className="show-episodes">
+            {selectedSeason && selectedSeason.episodes.map((episode)=>{
+              return(
+                <Episodes 
+                key ={episode.id}
+                title={episode.title}
+                image ={episode.image}
+                description={episode.description}/>
+              )
+              
+            })}
+            
+          </div>
+        </div>
+      }
+
     </div>
   );
 }
+
+
 
 export default App;

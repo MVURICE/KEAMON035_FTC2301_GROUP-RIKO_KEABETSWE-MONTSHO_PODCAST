@@ -82,6 +82,8 @@ header {
 .body{
 background-color: #E2ADAD;
 font-size: 1.2vw;
+min-height: 100vh;
+
 /* font-family: 'Merriweather', serif; */
 /* font-family: 'Roboto', sans-serif; */
 }
@@ -201,6 +203,7 @@ font-size: 1.2vw;
   display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: linear-gradient(356deg, #E2ADAD 64.70%, rgba(244, 242, 242, 0.89) 100%);
   align-items: center;
   padding: 2vw;
@@ -256,6 +259,7 @@ button{
     align-items: center;
     height: auto;
   }
+  
 
   .show-image-container{
     flex: 1;
@@ -308,16 +312,110 @@ button{
 
 
 
+/* ******************************************* */
+.show-seasons{
+  background: #BA8585;
+  text-align: center;
+}
 
 
 
+/* ***********************seasons-card************************** */
+/* .seasons{
+  width: 100%;
+} */
+.seasons-card{
+  display: flex;
+  border-radius: 0.6rem;
+  margin: 1vw 3vw;
+  width: 25vw;
+
+  min-width: 180px;
+  /* border: solid rgb(139, 21, 21) 2px; */
+  background-color: white;
+  box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw rgba(204, 27, 27, 0.25);
 
 
 
+}
+
+.season-image-container{
+  height: 10vw;
+}
+
+.season-image-container > img{
+  width: 9vw;
+  height: 10vw;
+  border: 0.6rem;
+  border-radius: 0.6rem;
+
+}
+
+.seasons-metadata-header{
+  margin: 1vw;
+}
+
+.show-seasons{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.seasons-metadata{
+  align-self: center;
+  margin: 0 auto;
+}
+
+.seasons-metadata-episodes{
+  margin: 1vw;
+}
+/* .show-season-header{
+  align-self: center;
+  justify-content: center;
+} */
 
 
+/* ********************************meida quiries for season card******************** */
+.seasons{
+  width: 100%;
+}
 
+@media screen and (max-width: 376px) {
 
+  .season-image-container > img{
+  width: 110px;
+  height: 100px;
+  
+  }
+  .season-image-container{
+    height: 100px;
+    
+  }
+
+}
+
+@media screen and (max-width: 426px) {
+
+  .show-seasons{
+    align-items: center;
+  }
+
+  .seasons-card{
+
+    width: 150px;
+  
+  }
+  .season-image-container > img{
+  width: 80px;
+  height: 70px;
+  
+  }
+  .season-image-container{
+    height: 70px;
+    
+  }
+
+}
 
 
 
