@@ -379,6 +379,10 @@ import Card from './components/Card';
 import SearchBar from './components/SearchBar';
 import SeasonCard from './components/SeasonCard';
 import Episodes from './components/Episodes';
+import AudioPlayer from './components/AudioPlayer';
+
+
+
 
 // import './App.css';
 
@@ -386,6 +390,7 @@ function App() {
   const [podcast, setPodcast] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedShow, setSelectedShow] = useState(null);
+ 
 
   useEffect(() => {
     fetch('https://podcast-api.netlify.app/shows')
@@ -438,7 +443,9 @@ function App() {
             {selectedShow && <ShowDetails show={selectedShow} />}
           </div>
         )}
+   
       </main>
+      
     </div>
   );
 }
@@ -461,13 +468,17 @@ function Navbar() {
   );
 }
 
-// const showSeasons = show
 
-
- 
 function ShowDetails({ show }) {
 
   const [selectedSeason, setSelectedSeason] = useState(null);
+  const [currentTrack, setCurrentTrack] = useState('');
+
+  function handleEpisodePlay(file){
+    console.log(file)
+    setCurrentTrack(file)
+    console.log(currentTrack)
+  }
 
   function handleSeasonClick(season) {
     console.log('Clicked season:', season);
@@ -475,60 +486,33 @@ function ShowDetails({ show }) {
     setSelectedSeason(season); // Set the selected season
   }
 
-  // function handleSeasonClick(season) {
-  //   console.log('Clicked season:', season);
-  //   // Add any other logic related to handling the clicked season here
-  //   return(
-  //     <div className="episodes">
-  //         <div className="season-hero-banner">
-  //             <div className="episode-image-container">
-  //                 <img src={season.image} />
-  //             </div>
-  //             <div className="season-description">
-  //                 <h3>{season.title}</h3>
-  //                 <p>{season.episodes} Episodes</p>
-  //             </div>
-  //         </div>
-  //         <div className="show-episodes">
-              
-
-  //         </div>
-
-  //     </div>
-  // )
-
-    
-  // }
-
-
-
-
   return (
     <div className='seasons'>
+      
     <div className='show-hero-banner'>
       <div className='show-image-container'>
-        <img className='show-image' src={show.image} alt={show.title} />
+        <img className='show-image' src={selectedSeason ? selectedSeason.image : show.image} alt={show.title} />
       </div>
       <br />
       <section className='show-metadata'>
-        <h4 className='show-card-title'>{show.title}</h4>
+        <h4 className='show-card-title'>{selectedSeason ? selectedSeason.title: show.title}</h4>
         <button>Favourite</button>
         <br />
         <br />
-        <strong>{show.seasons && show.seasons.length} seasons</strong><br />
-        <strong>Genres: <small><em>{show.genres ? show.genres.join(', ') : 'No specific Genre'}</em></small> </strong> <br />
+        <strong>{selectedSeason ? (selectedSeason.episodes && selectedSeason.episodes.length) :(show.seasons && show.seasons.length)} {selectedSeason? 'episodes':'seasons'}</strong><br />
+        {selectedSeason ? '':<strong>Genres: <small><em>{show.genres ? show.genres.join(', ') : 'No specific Genre'}</em></small> </strong>} <br />
         <strong>Last-updated: </strong><small>{show.updated && new Date(show.updated).toLocaleDateString('en-US')}</small>
       </section>
-      <section className='show-description'>
+      {selectedSeason? <section className='show-description'></section> : <section className='show-description'>
         <h4 className='description-header'>About:</h4>
         <br />
         <p className='description-paragraph'>{show.description}</p>
-      </section>
-    
-      
-      {/* Display the seasons */}
+      </section>}
+  
      
     </div>
+
+    
     <div className='show-seasons'>
         {!selectedSeason && show.seasons && show.seasons.map((season) => (
           <SeasonCard  
@@ -543,7 +527,8 @@ function ShowDetails({ show }) {
       {/* Display the selected season */}
       {selectedSeason && 
         <div className="episodes">
-          <div className="season-hero-banner">
+
+          {/* <div className="season-hero-banner">
             <div className="episode-image-container">
               <img src={selectedSeason.image} alt={selectedSeason.title} />
             </div>
@@ -551,7 +536,9 @@ function ShowDetails({ show }) {
               <h3>{selectedSeason.title}</h3>
               <p>{selectedSeason.episodes.length} Episodes</p>
             </div>
-          </div>
+          </div> */}
+
+
           <div className="show-episodes">
             {selectedSeason && selectedSeason.episodes.map((episode)=>{
               return(
@@ -559,12 +546,14 @@ function ShowDetails({ show }) {
                 key ={episode.id}
                 title={episode.title}
                 image ={episode.image}
+                play={()=>handleEpisodePlay(episode.file)}
                 description={episode.description}/>
               )
               
             })}
             
           </div>
+          {/* <AudioPlayer /> */}
         </div>
       }
 

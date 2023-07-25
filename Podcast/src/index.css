@@ -164,7 +164,17 @@ min-height: 100vh;
 }
 .card:hover{
   cursor: pointer;
+  transform: translate3D(0,-1px,0) scale(1.03);
+  box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw rgba(253, 250, 250, 0.25); 
+
 }
+
+.episodes-card:hover,.seasons-card:hover{
+  transform: translate3D(0,-1px,0) scale(1.03);
+  box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw rgba(253, 250, 250, 0.25);
+}
+
+
 
 .card-info{
   margin-bottom: 1vw;
@@ -231,6 +241,7 @@ button{
   width: 5vw;
   height: 2vw;
   font-size: 0.8vw;
+  margin: 1vw;
 }
 
 .show-card-title {
@@ -346,13 +357,13 @@ button{
 .season-image-container > img{
   width: 9vw;
   height: 10vw;
-  border: 0.6rem;
   border-radius: 0.6rem;
 
 }
 
 .seasons-metadata-header{
-  margin: 1vw;
+  margin: 0 1vw;
+  font-size: 1vw;
 }
 
 .show-seasons{
@@ -361,12 +372,12 @@ button{
   justify-content: center;
 
 }
-.seasons-metadata{
+.seasons-metadata-container{
   align-self: center;
   margin: 0 auto;
 }
 
-.seasons-metadata-episodes{
+.seasons-metadata{
   margin: 1vw;
 }
 /* .show-season-header{
@@ -415,9 +426,69 @@ button{
     
   }
 
+
 }
 
 
 
+/* *************************************************************************************** */
+
+/* *******************************************episodes************************************* */
+.episodes{
+  width: 100%;
+  
+}
+.episodes-metadata-header{
+  margin: 1vw;
+}
+
+.episodes-card{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0.6rem;
+  padding: 1vw;
+  margin: 1vw 3vw;
+  width: 450px;
+  height: 20vw;
+  min-width: 180px;
+  border: solid rgb(139, 21, 21) 2px;
+  background: white;
+  box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw rgba(204, 27, 27, 0.25);
+  
+}
 
 
+.episodes-metadata{
+  margin: 0 auto;
+}
+.episodes-metadata-header{
+  text-align: center;
+}
+.show-episodes{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #BA8585;
+  padding-top: 10vw;
+}
+.episodes-metadata-container{
+  padding: 2px 15px;
+  overflow-y: scroll;
+  padding-top: 1.5vw;
+}
+.episode-buttons{
+  display: flex;
+  justify-content: center;
+}
+
+.episodes-metadata-header{
+  color: #6D0909;
+}
+
+
+/* .episode-name-container{
+  width: 100%;
+  height: 100%;
+} */
