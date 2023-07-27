@@ -1,5 +1,5 @@
-import React from "react";
-import { useState,useEffect } from "react";
+import {React,useCallback} from "react";
+import { useState,useEffect,useRef } from "react";
 
 
 import {
@@ -15,16 +15,26 @@ import {
 export default function Controls({ audioRef }){
     const [isPlaying, setIsPlaying] = useState(false);
 
-    function togglePlayPause() {
-        setIsPlaying((prev) => !prev);
+    const playAnimationRef = useRef();
+    function togglePlayPause  ()  {
+      setIsPlaying((prevState) => !prevState);
+    }
+
+    const repeat = useCallback(() => {
+      console.log('run');
+    
+      playAnimationRef.current = requestAnimationFrame(repeat);
+    }, []);
+
+    useEffect(() => {
+      if (isPlaying) {
+        audioRef.current.play();
+        playAnimationRef.current = requestAnimationFrame(repeat);
+      } else {
+        audioRef.current.pause();
+        cancelAnimationFrame(playAnimationRef.current);
       }
-      useEffect(() => {
-        if (isPlaying) {
-          audioRef.current.play();
-        } else {
-          audioRef.current.pause();
-        }
-      }, [isPlaying, audioRef]);
+    }, [isPlaying, audioRef, repeat])
 
     return (
         <div className="controls-wrapper">

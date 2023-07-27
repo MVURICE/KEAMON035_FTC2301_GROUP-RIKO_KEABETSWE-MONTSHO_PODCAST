@@ -22,7 +22,7 @@ export default function AudioPlayer(props)  {
             src={props.currentTrack}
             ref={props.audioRef}
             onLoadedMetadata={props.onLoadedMetadata}
-            setDuration={props.setDuration}
+  
     
              controls />
               <div className="audio-info">
@@ -37,7 +37,12 @@ export default function AudioPlayer(props)  {
           <p>Epiosode{props.currentTrackEpisode}</p>
         </div>
       </div>
-            <Controls audioRef={props.audioRef}/>
+            <Controls 
+            audioRef={props.audioRef}
+            setTimeProgress={props.setTimeProgress}
+            progressBarRef={props.progressBarRef}
+            duration={props.duration}
+            />
             <ProgressBar 
             progressBarRef={progressBarRef} 
             audioRef={props.audioRef}

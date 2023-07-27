@@ -104,7 +104,11 @@ function ShowDetails({ show }) {
 
   function onLoadedMetadata () {
     console.log(audioRef.current.duration)
-    
+    const seconds = audioRef.current.duration;
+    setDuration(seconds);
+    progressBarRef.current.max = seconds
+    console.log('this is america',progressBarRef.current)
+
   }
 
   
@@ -175,7 +179,6 @@ function ShowDetails({ show }) {
                 title={episode.title}
                 image ={episode.image}
                 play={()=>handleEpisodePlay(episode)}
-                // EpisodesDeatails={()=>episodeDetials(episode)}
                 description={episode.description}/>
               )
               
