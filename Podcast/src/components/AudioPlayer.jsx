@@ -1,16 +1,19 @@
 import React from "react"
-import DisplayTrack from "./DisplayTrack"
+// import DisplayTrack from "./DisplayTrack"
 import Controls from "./Controls"
 import ProgressBar from "./ProgressBar"
 
 
 
-export default function AudioPlayer()  {
+export default function AudioPlayer(props)  {
     return (
       <div className="audio-player">
         <div className="inner">
-            <DisplayTrack />
-            <Controls/>
+            <audio 
+            src={props.currentTrack}
+            ref={props.audioRef}
+             controls />
+            <Controls audioRef={props.audioRef}/>
             <ProgressBar />
         </div>
       </div>

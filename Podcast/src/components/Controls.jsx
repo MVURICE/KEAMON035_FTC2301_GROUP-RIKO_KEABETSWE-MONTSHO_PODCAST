@@ -1,8 +1,43 @@
 import React from "react";
+import { useState,useRef } from "react";
+
+import {
+    IoPlayBackSharp,
+    IoPlayForwardSharp,
+    IoPlaySkipBackSharp,
+    IoPlaySkipForwardSharp,
+    IoPlaySharp,
+    IoPauseSharp,
+  } from 'react-icons/io5'
 
 
 export default function Controls(){
-    return(
-        <div className="Audio-controls">Audio Controls</div>
-    )
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    function togglePlayPause() {
+        setIsPlaying((prev) => !prev);
+      }
+
+    return (
+        <div className="controls-wrapper">
+          <div className="controls">
+            <button>
+              <IoPlaySkipBackSharp />
+            </button>
+            <button>
+              <IoPlayBackSharp />
+            </button>
+    
+            <button onClick={togglePlayPause}>
+              {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
+            </button>
+            <button>
+              <IoPlayForwardSharp />
+            </button>
+            <button>
+              <IoPlaySkipForwardSharp />
+            </button>
+          </div>
+        </div>
+      )
 }
