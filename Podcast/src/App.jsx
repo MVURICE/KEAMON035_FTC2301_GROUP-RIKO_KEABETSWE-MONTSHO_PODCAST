@@ -99,6 +99,13 @@ function ShowDetails({ show }) {
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0)
   const audioRef = useRef()
+  const progressBarRef = useRef()
+
+
+  function onLoadedMetadata () {
+    console.log(audioRef.current.duration)
+    
+  }
 
   
 
@@ -181,6 +188,12 @@ function ShowDetails({ show }) {
           audioRef={audioRef}
           currentTrackTitle={clickedEpisodeMeta.title}
           currentTrackEpisode={clickedEpisodeMeta.episode}
+          timeProgress={timeProgress}
+          duration={duration}
+          onLoadedMetadata={()=>onLoadedMetadata()}
+          setDuration={setDuration}
+          progressBarRef={progressBarRef}
+          
            />
         </div>
       }

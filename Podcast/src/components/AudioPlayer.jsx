@@ -10,8 +10,9 @@ import { BsMusicNoteBeamed } from 'react-icons/bs'
 
 
 export default function AudioPlayer(props)  {
-
+  // const audioRef = useRef()
   const progressBarRef = useRef();
+  
 
 
     return (
@@ -20,6 +21,9 @@ export default function AudioPlayer(props)  {
             <audio 
             src={props.currentTrack}
             ref={props.audioRef}
+            onLoadedMetadata={props.onLoadedMetadata}
+            setDuration={props.setDuration}
+    
              controls />
               <div className="audio-info">
         
