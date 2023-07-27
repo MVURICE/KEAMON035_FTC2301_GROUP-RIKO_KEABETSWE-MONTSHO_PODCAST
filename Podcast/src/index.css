@@ -492,3 +492,26 @@ button{
   width: 100%;
   height: 100%;
 } */
+
+
+
+
+
+
+/* *********************************media-player**************************************** */
+
+
+
+input[type="range"] {
+  --range-progress: 50%;
+  /* ... */
+}
+
+input[type="range"]::before {
+  /* ... */
+  background: #f50;
+  width: var(--range-progress);
+  /* ... */
+}
+
+

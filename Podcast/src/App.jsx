@@ -95,16 +95,22 @@ function ShowDetails({ show }) {
 
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [currentTrack, setCurrentTrack] = useState('');
+  const [clickedEpisodeMeta,setClickedEpisodeMeta] = useState('')
+  const [timeProgress, setTimeProgress] = useState(0);
+  const [duration, setDuration] = useState(0)
   const audioRef = useRef()
 
   
 
-  function handleEpisodePlay(file){
+  function handleEpisodePlay(episode){
     // console.log(file)
-    setCurrentTrack(file)
-    console.log(currentTrack)
-    console.log(audioRef)
+    setCurrentTrack(episode.file)
+    setClickedEpisodeMeta(episode)
+    console.log('the whole episode is',clickedEpisodeMeta)
+    console.log('the current track is',currentTrack)
+    // console.log(audioRef)
   }
+  
 
   function handleSeasonClick(season) {
     console.log('Clicked season:', season);
@@ -161,7 +167,8 @@ function ShowDetails({ show }) {
                 key ={episode.id}
                 title={episode.title}
                 image ={episode.image}
-                play={()=>handleEpisodePlay(episode.file)}
+                play={()=>handleEpisodePlay(episode)}
+                // EpisodesDeatails={()=>episodeDetials(episode)}
                 description={episode.description}/>
               )
               
@@ -169,9 +176,11 @@ function ShowDetails({ show }) {
             
           </div>
           
-          <AudioPlayer 
+          <AudioPlayer className='audio-player' 
           currentTrack={currentTrack}
           audioRef={audioRef}
+          currentTrackTitle={clickedEpisodeMeta.title}
+          currentTrackEpisode={clickedEpisodeMeta.episode}
            />
         </div>
       }
