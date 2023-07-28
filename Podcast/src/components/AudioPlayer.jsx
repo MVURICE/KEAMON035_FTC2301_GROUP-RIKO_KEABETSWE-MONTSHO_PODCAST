@@ -55,7 +55,7 @@ export default function AudioPlayer(props) {
 
 
   return (
-    <div>
+    <div className="AudioPlayer">
       <button onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</button>
       <input
         type="range"
