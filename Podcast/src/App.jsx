@@ -1,11 +1,6 @@
 
 import React, { useEffect, useState} from 'react';
-import logo from './assets/Logo.png';
 import Card from './components/Card';
-import SearchBar from './components/SearchBar';
-import SeasonCard from './components/SeasonCard';
-import Episodes from './components/Episodes';
-import AudioPlayer from './components/AudioPlayer';
 import Navbar from './components/Navbar';
 import ShowDetails from './components/ShowDeatils';
 

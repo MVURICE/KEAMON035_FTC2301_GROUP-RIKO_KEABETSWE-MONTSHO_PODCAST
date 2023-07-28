@@ -93,6 +93,8 @@ function ShowDetails({ show }) {
         }
         {currentTrack && < AudioPlayer
          selectedTrack={currentTrack}
+         title={clickedEpisodeMeta.title}
+         episode={clickedEpisodeMeta.episode}
         />}
   
       </div>

@@ -55,21 +55,35 @@ export default function AudioPlayer(props) {
 
 
   return (
-    <div className="AudioPlayer">
-      <button onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</button>
-      {duration > 0 && <input
-        type="range"
-        min="0"
-        max="100"
-        value={(currentTime / duration) * 100}
-        onChange={handleRangeChange}
-      />}
-      <div>
-        {formatTimestamp(currentTime)} / {formatTimestamp(duration)}
+    <div className="audioplayer">
+
+        <div className="audio-metadata">
+        <button onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</button>
+            <div>
+                <h4>{props.title}</h4>
+                <h5>Episode {props.episode}</h5>
+            </div>
+
+        </div>
+
+
+        <div className="audio-controls">
+            
+            {duration > 0 && <input
+                type="range"
+                min="0"
+                max="100"
+                value={(currentTime / duration) * 100}
+                onChange={handleRangeChange}
+            />}{formatTimestamp(currentTime)} / {formatTimestamp(duration)}
+            <div>
+                
+            </div>
+        
+            <audio id="audio-element">
+                <source src={props.selectedTrack} />
+            </audio>
       </div>
-      <audio id="audio-element">
-        <source src={props.selectedTrack} />
-      </audio>
     </div>
   );
 }

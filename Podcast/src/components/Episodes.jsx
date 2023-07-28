@@ -15,7 +15,7 @@ export default function Episodes(props){
             </div>
             <div className="episodes-metadata-container">
                 
-                <p className="episodes-metadata">{props.description} Episodes</p>
+                <p className="episodes-metadata">{props.description}</p>
                 
             </div>
         </div>

@@ -238,8 +238,8 @@ min-height: 100vh;
 }
 
 button{
-  width: 5vw;
-  height: 2vw;
+  width: 6vw;
+  height: 2.5vw;
   font-size: 0.8vw;
   margin: 1vw;
 }
@@ -445,13 +445,13 @@ button{
 .episodes-card{
 
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   border-radius: 0.6rem;
   padding: 1vw;
   margin: 1vw 3vw;
-  width: 450px;
-  height: 20vw;
+  width: 30vw;
+  height: 14vw;
   min-width: 180px;
   border: solid rgb(139, 21, 21) 2px;
   background: white;
@@ -501,4 +501,18 @@ button{
 /* *********************************Audio-player**************************************** */
 
 
+.audioplayer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 5vw 5vw;
 
+}
+
+.audio-metadata{
+  display: flex;
+  align-items: center;
+}
+
+/* .audio-controls{} */
