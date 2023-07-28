@@ -5,7 +5,7 @@ import Card from './components/Card';
 import SearchBar from './components/SearchBar';
 import SeasonCard from './components/SeasonCard';
 import Episodes from './components/Episodes';
-import AudioPlayer from './components/AudioPlayer';
+
 
 
 function App() {
@@ -96,20 +96,7 @@ function ShowDetails({ show }) {
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [currentTrack, setCurrentTrack] = useState('');
   const [clickedEpisodeMeta,setClickedEpisodeMeta] = useState('')
-  const [timeProgress, setTimeProgress] = useState(0);
-  const [duration, setDuration] = useState(0)
-  const audioRef = useRef()
-  const progressBarRef = useRef()
-
-
-  function onLoadedMetadata () {
-    console.log(audioRef.current.duration)
-    const seconds = audioRef.current.duration;
-    setDuration(seconds);
-    progressBarRef.current.max = seconds
-    console.log('this is america',progressBarRef.current)
-
-  }
+ 
 
   
 
@@ -186,18 +173,7 @@ function ShowDetails({ show }) {
             
           </div>
           
-          <AudioPlayer className='audio-player' 
-          currentTrack={currentTrack}
-          audioRef={audioRef}
-          currentTrackTitle={clickedEpisodeMeta.title}
-          currentTrackEpisode={clickedEpisodeMeta.episode}
-          timeProgress={timeProgress}
-          duration={duration}
-          onLoadedMetadata={()=>onLoadedMetadata()}
-          setDuration={setDuration}
-          progressBarRef={progressBarRef}
-          
-           />
+    
         </div>
       }
 
