@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import SeasonCard from './SeasonCard';
 import Episodes from './Episodes';
 import AudioPlayer from './AudioPlayer';
@@ -59,7 +60,7 @@ function ShowDetails({ show }) {
       <div className='show-seasons'>
           {!selectedSeason && show.seasons && show.seasons.map((season) => (
             <SeasonCard  
-              key={season.id} 
+              key={uuidv4()} 
               title={season.title}
               image={season.image}
               episodes={season.episodes.length}
@@ -76,7 +77,7 @@ function ShowDetails({ show }) {
               {selectedSeason && selectedSeason.episodes.map((episode)=>{
                 return(
                   <Episodes 
-                  key ={episode.id}
+                  key ={uuidv4()}
                   title={episode.title}
                   image ={episode.image}
                   play={()=>handleEpisodePlay(episode)}

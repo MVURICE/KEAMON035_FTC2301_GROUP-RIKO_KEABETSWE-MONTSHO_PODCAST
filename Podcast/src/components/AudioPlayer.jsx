@@ -57,19 +57,18 @@ export default function AudioPlayer(props) {
   return (
     <div className="AudioPlayer">
       <button onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</button>
-      <input
+      {duration > 0 && <input
         type="range"
         min="0"
         max="100"
         value={(currentTime / duration) * 100}
         onChange={handleRangeChange}
-      />
+      />}
       <div>
         {formatTimestamp(currentTime)} / {formatTimestamp(duration)}
       </div>
       <audio id="audio-element">
         <source src={props.selectedTrack} />
-        Your browser does not support the audio element.
       </audio>
     </div>
   );
