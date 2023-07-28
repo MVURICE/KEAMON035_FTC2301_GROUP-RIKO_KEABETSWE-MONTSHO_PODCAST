@@ -1,10 +1,11 @@
 
-import React, { useEffect, useState,useRef } from 'react';
+import React, { useEffect, useState} from 'react';
 import logo from './assets/Logo.png';
 import Card from './components/Card';
 import SearchBar from './components/SearchBar';
 import SeasonCard from './components/SeasonCard';
 import Episodes from './components/Episodes';
+import AudioPlayer from './components/AudioPlayer';
 
 
 
@@ -94,7 +95,7 @@ function Navbar() {
 function ShowDetails({ show }) {
 
   const [selectedSeason, setSelectedSeason] = useState(null);
-  const [currentTrack, setCurrentTrack] = useState('');
+  const [currentTrack, setCurrentTrack] = useState(0);
   const [clickedEpisodeMeta,setClickedEpisodeMeta] = useState('')
  
 
@@ -153,6 +154,7 @@ function ShowDetails({ show }) {
             handleClick={()=>handleSeasonClick(season)} // Pass the season object to handleSeasonClick
           />
         ))}
+        
       </div>
 
       {selectedSeason && 
@@ -176,11 +178,13 @@ function ShowDetails({ show }) {
     
         </div>
       }
+      {currentTrack && < AudioPlayer
+       selectedTrack={currentTrack}
+      />}
 
     </div>
   );
 }
-
 
 
 export default App;

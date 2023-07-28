@@ -498,20 +498,7 @@ button{
 
 
 
-/* *********************************media-player**************************************** */
+/* *********************************Audio-player**************************************** */
 
-
-
-input[type="range"] {
-  --range-progress: 50%;
-  /* ... */
-}
-
-input[type="range"]::before {
-  /* ... */
-  background: #f50;
-  width: var(--range-progress);
-  /* ... */
-}
 
 
