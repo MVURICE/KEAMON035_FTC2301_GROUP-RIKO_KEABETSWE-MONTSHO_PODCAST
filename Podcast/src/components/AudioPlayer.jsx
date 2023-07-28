@@ -52,13 +52,7 @@ export default function AudioPlayer(props) {
     audioElement.currentTime = seekTime;
   }
 
-  // Prompt the user before unloading the page if audio is playing
-  function handleBeforeUnload(event) {
-    if (isPlaying) {
-      event.preventDefault();
-      event.returnValue = "Audio is currently playing. Are you sure you want to leave the page?";
-    }
-  }
+
 
   return (
     <div>
