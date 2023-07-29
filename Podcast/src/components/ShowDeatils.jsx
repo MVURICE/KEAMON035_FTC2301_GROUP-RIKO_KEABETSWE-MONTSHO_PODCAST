@@ -14,26 +14,12 @@ function ShowDetails({ show }) {
 
 
 
-    // function viewShows(){
-
-    //   selectedSeason.episodes.map((episode)=>{
-    //     return(
-    //       <Episodes 
-    //       key ={uuidv4()}
-    //       title={episode.title}
-    //       image ={episode.image}
-    //       play={()=>handleEpisodePlay(episode)}
-    //       description={episode.description}/>
-    //     )
-        
-    //   })
-
-    // }
+    
    
   
     function handleEpisodeBackbtn(){
 
-      console.log('you  habe pressed the back button')
+      console.log('you  have pressed the back button')
       setSelectedSeason(null)
 
     }
@@ -44,13 +30,12 @@ function ShowDetails({ show }) {
       setClickedEpisodeMeta(episode)
       console.log('the whole episode is',clickedEpisodeMeta)
       console.log('the current track is',currentTrack)
-      // console.log(audioRef)
+
     }
     
   
     function handleSeasonClick(season) {
       console.log('Clicked season:', season);
-      // Add any other logic related to handling the clicked season here
       setSelectedSeason(season); // Set the selected season
     }
   

@@ -22,7 +22,7 @@ export default function Card ({title,image,season,genre,lastUpdated,handleShow})
     <br />
     <section className='card-info'>
       <strong>{season} seasons</strong><br />
-      <strong>Genres: {genre} </strong> <br />
+      <strong className="genre names">Genres: {genre} </strong> <br />
       <strong>Last-updated: </strong><small>{lastUpdated}</small> 
   
     </section>

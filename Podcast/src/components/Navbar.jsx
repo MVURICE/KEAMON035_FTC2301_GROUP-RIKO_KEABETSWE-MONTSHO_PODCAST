@@ -10,7 +10,7 @@ function Navbar() {
           <img className='logo' src={logo} alt='Logo' />
         </div>
         <ul className='menu-links'>
-          <li>HOME PAGE</li>
+          <li >HOME PAGE</li>
           <li>GENRES</li>
           <li>FAVOURITES</li>
         </ul>
