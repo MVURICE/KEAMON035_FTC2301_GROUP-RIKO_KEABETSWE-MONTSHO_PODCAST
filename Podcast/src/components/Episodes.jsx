@@ -5,7 +5,9 @@ import React from "react";
 export default function Episodes(props){
 
     return(
+
         <div className="episodes-card">
+            
             <div className="episode-name-container">
             <h3 className="episodes-metadata-header">{props.title}</h3>
             <div className="episode-buttons">

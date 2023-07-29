@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import SeasonCard from './SeasonCard';
 import Episodes from './Episodes';
 import AudioPlayer from './AudioPlayer';
+import backbutton from '../assets/backbutton.png'
 
 
 function ShowDetails({ show }) {
@@ -10,9 +11,32 @@ function ShowDetails({ show }) {
     const [selectedSeason, setSelectedSeason] = useState(null);
     const [currentTrack, setCurrentTrack] = useState(0);
     const [clickedEpisodeMeta,setClickedEpisodeMeta] = useState('')
+
+
+
+    // function viewShows(){
+
+    //   selectedSeason.episodes.map((episode)=>{
+    //     return(
+    //       <Episodes 
+    //       key ={uuidv4()}
+    //       title={episode.title}
+    //       image ={episode.image}
+    //       play={()=>handleEpisodePlay(episode)}
+    //       description={episode.description}/>
+    //     )
+        
+    //   })
+
+    // }
    
   
-    
+    function handleEpisodeBackbtn(){
+
+      console.log('you  habe pressed the back button')
+      setSelectedSeason(null)
+
+    }
   
     function handleEpisodePlay(episode){
       // console.log(file)
@@ -32,6 +56,7 @@ function ShowDetails({ show }) {
   
     return (
       <div className='seasons'>
+        
         
       <div className='show-hero-banner'>
         <div className='show-image-container'>
@@ -55,6 +80,7 @@ function ShowDetails({ show }) {
     
        
       </div>
+      
   
       
       <div className='show-seasons'>
@@ -71,9 +97,16 @@ function ShowDetails({ show }) {
         </div>
   
         {selectedSeason && 
+          
           <div className="episodes">
+            
   
             <div className="show-episodes">
+            <div className='return-to-seasons'>
+              <img src={backbutton} alt='back button' onClick={handleEpisodeBackbtn} className='episode-back-button'  />
+
+              <h1>seasons</h1>
+            </div>
               {selectedSeason && selectedSeason.episodes.map((episode)=>{
                 return(
                   <Episodes 

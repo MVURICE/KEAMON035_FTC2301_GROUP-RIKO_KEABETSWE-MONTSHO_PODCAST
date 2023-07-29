@@ -63,13 +63,14 @@ export default function AudioPlayer(props) {
                 <h4>{props.title}</h4>
                 <h5>Episode {props.episode}</h5>
             </div>
+            <button>favotite</button>
 
         </div>
 
 
         <div className="audio-controls">
             
-            {duration > 0 && <input
+            {duration > 0 && <input className="range"
                 type="range"
                 min="0"
                 max="100"

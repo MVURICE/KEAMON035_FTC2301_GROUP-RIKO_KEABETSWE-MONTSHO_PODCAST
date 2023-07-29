@@ -48,6 +48,10 @@ header {
   justify-content: center; 
 } 
 
+.menu-links > li:hover{
+  color: white;
+}
+
 .menu-links > li{
   list-style-type: none;
   margin: 0 0.6rem;
@@ -434,6 +438,27 @@ button{
 /* *************************************************************************************** */
 
 /* *******************************************episodes************************************* */
+
+.return-to-seasons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  background: #BA8585;
+  padding: 10px;
+  width: 100%;
+}
+
+.episode-back-button:hover{
+  transform: translate3D(0,-1px,0) scale(1.3);
+  
+}
+
+.episode-back-button{
+  width: 2.5vw;
+  height: 2.5vw;
+  margin: 0 1vw;
+}
 .episodes{
   width: 100%;
   
@@ -454,7 +479,7 @@ button{
   height: 14vw;
   min-width: 180px;
   border: solid rgb(139, 21, 21) 2px;
-  background: white;
+  background-color: white;
   box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw rgba(204, 27, 27, 0.25);
   
 }
@@ -471,7 +496,7 @@ button{
   flex-wrap: wrap;
   justify-content: center;
   background: #BA8585;
-  padding-top: 10vw;
+  padding-top: 1vw;
 }
 .episodes-metadata-container{
   padding: 2px 15px;
@@ -506,7 +531,12 @@ button{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 5vw 5vw;
+  margin: 5vw auto;
+  border: 1px solid #BA8585;
+  border-radius: 0.6rem;
+  width: 50vw;
+  padding: 2vw;
+  background-color: #a16969;
 
 }
 
@@ -516,3 +546,7 @@ button{
 }
 
 /* .audio-controls{} */
+
+.range{
+  margin-right: 10px;
+}
