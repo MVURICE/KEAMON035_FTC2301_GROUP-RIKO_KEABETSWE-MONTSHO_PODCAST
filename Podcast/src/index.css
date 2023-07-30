@@ -79,8 +79,10 @@ header {
   }
   
 }
-
-
+/* 
+.genre{
+  font-size: 10px;
+} */
 /* ************************End of Navigation bar **************************************8**/
 
 .body{
@@ -226,11 +228,15 @@ min-height: 100vh;
 
 .show-image-container{
   flex: 1;
+  display: flex;
+  margin-right: 0.8vw;
 }
 .show-metadata{
   flex: 2;
 
 }
+
+
 
 .show-description{
   flex: 2;
@@ -384,11 +390,6 @@ button{
 .seasons-metadata{
   margin: 1vw;
 }
-/* .show-season-header{
-  align-self: center;
-  justify-content: center;
-} */
-
 
 /* ********************************meida quiries for season card******************** */
 .seasons{
@@ -454,7 +455,7 @@ button{
   
 }
 
-.episode-back-button{
+.episode-back-button,.season-back-button{
   width: 2.5vw;
   height: 2.5vw;
   margin: 0 1vw;

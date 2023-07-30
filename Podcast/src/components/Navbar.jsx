@@ -2,7 +2,13 @@ import React from 'react';
 import logo from '../assets/Logo.png';
 import SearchBar from './SearchBar';
 
-function Navbar() {
+/**
+ * Navbar component represents the navigation bar of the application.
+ *
+ * @component
+ * @returns {JSX.Element} The JSX representation of the Navbar component.
+ */
+const Navbar = () => {
   return (
     <header>
       <nav className='navbar'>
@@ -18,6 +24,7 @@ function Navbar() {
       </nav>
     </header>
   );
-}
+};
 
 export default Navbar;
+
