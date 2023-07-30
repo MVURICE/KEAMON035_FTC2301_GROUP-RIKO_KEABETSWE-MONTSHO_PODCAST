@@ -5,54 +5,83 @@ import Episodes from './Episodes';
 import AudioPlayer from './AudioPlayer';
 import backbutton from '../assets/backbutton.png';
 
-function ShowDetails({ show }) {
+/**
+ * ShowDetails component displays detailed information about a TV show, including seasons and episodes.
+ *
+ * @component
+ * @param {Object} props - The props passed to the ShowDetails component.
+ * @param {Object} props.show - The show object containing information about the TV show.
+ * @returns {JSX.Element} The JSX representation of the ShowDetails component.
+ */
+const ShowDetails = ({ show }) => {
+  // State variables
   const [selectedSeason, setSelectedSeason] = useState(null);
   const [selectedTrack, setSelectedTrack] = useState(0);
   const [clickedEpisodeMeta, setClickedEpisodeMeta] = useState('');
-  const [favouriteEpisodes, setFavouriteEpisodes] = useState([])
+  const [favouriteEpisodes, setFavouriteEpisodes] = useState([]);
 
-  function handlefavourites(episode) {
+  /**
+   * Handles the "Favourite" button click for an episode.
+   *
+   * @param {Object} episode - The episode object.
+   * @returns {void}
+   */
+  const handlefavourites = (episode) => {
     console.log('you clicked favourite');
-    
+
     const isEpisodeInFavourites = favouriteEpisodes.some(
       (favEpisode) => favEpisode.title === episode.title
     );
-  
 
     const updatedFavouriteEpisodes = [...favouriteEpisodes];
-  
+
     if (isEpisodeInFavourites) {
       const updatedFavouritesWithoutEpisode = updatedFavouriteEpisodes.filter(
         (favEpisode) => favEpisode.title !== episode.title
       );
-  
+
       setFavouriteEpisodes(updatedFavouritesWithoutEpisode);
     } else {
-
       updatedFavouriteEpisodes.push(episode);
       setFavouriteEpisodes(updatedFavouriteEpisodes);
     }
-  
-    console.log('your favourites are', favouriteEpisodes);
-  }
-  
 
-  function handleEpisodeBackBtn() {
+    console.log('your favourites are', favouriteEpisodes);
+  };
+
+  /**
+   * Handles the back button click for episodes to return to seasons view.
+   *
+   * @returns {void}
+   */
+  const handleEpisodeBackBtn = () => {
     console.log('You have pressed the back button');
     setSelectedSeason(null);
-  }
+  };
 
-  function handleEpisodePlay(episode) {
+  /**
+   * Handles the "Play" button click for an episode.
+   *
+   * @param {Object} episode - The episode object.
+   * @returns {void}
+   */
+  const handleEpisodePlay = (episode) => {
     setSelectedTrack(episode.file);
     setClickedEpisodeMeta(episode);
     console.log('The whole episode is', clickedEpisodeMeta);
     console.log('The selected track is', selectedTrack);
-  }
+  };
 
-  function handleSeasonClick(season) {
+  /**
+   * Handles the click on a season to view episodes.
+   *
+   * @param {Object} season - The season object.
+   * @returns {void}
+   */
+  const handleSeasonClick = (season) => {
     console.log('Clicked season:', season);
     setSelectedSeason(season);
-  }
+  };
 
   return (
     <>

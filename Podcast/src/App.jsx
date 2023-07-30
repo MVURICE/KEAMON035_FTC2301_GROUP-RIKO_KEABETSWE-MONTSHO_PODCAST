@@ -4,15 +4,23 @@ import Navbar from './components/Navbar';
 import ShowDetails from './components/ShowDetials';
 import genreNames from './GenresNames';
 
-function App() {
+/**
+ * Main functional component for the App.
+ * Displays a list of podcasts and allows sorting and selecting individual shows.
+ * @function App
+ * @returns {JSX.Element} The JSX element representing the App.
+ */
+const App = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedShow, setSelectedShow] = useState(null);
-  
-  const [sortOrder, setSortOrder] = useState('A-Z'); // New state for sorting order ('A-Z', 'Z-A', 'ASC_DATE', 'DESC_DATE')
+  const [sortOrder, setSortOrder] = useState('A-Z');
 
- 
-
+  /**
+   * Fetches the podcast data from the API when the component mounts.
+   * @function useEffect
+   * @memberof App
+   */
   useEffect(() => {
     fetch('https://podcast-api.netlify.app/shows')
       .then((res) => res.json())
@@ -26,7 +34,14 @@ function App() {
       });
   }, []);
 
-  function handleSelectedShow(id) {
+  /**
+   * Handles the selection of a specific show by its ID.
+   * Fetches and sets the selected show's details from the API.
+   * @function handleSelectedShow
+   * @memberof App
+   * @param {string} id - The ID of the selected show.
+   */
+  const handleSelectedShow = (id) => {
     fetch(`https://podcast-api.netlify.app/id/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -37,9 +52,13 @@ function App() {
         console.error('Error loading show details:', error);
         setSelectedShow(null);
       });
-  }
+  };
 
-  // Sorting function
+  /**
+   * Sorts the podcasts based on the selected sorting order.
+   * @function sortedPodcasts
+   * @memberof App
+   */
   const sortedPodcasts = [...podcasts].sort((a, b) => {
     if (sortOrder === 'A-Z') {
       return a.title.localeCompare(b.title);
@@ -52,6 +71,11 @@ function App() {
     }
   });
 
+  /**
+   * Maps the sorted podcasts to individual Card components.
+   * @function showElements
+   * @memberof App
+   */
   const showElements = sortedPodcasts.map((show) => (
     <Card
       key={show.id}
@@ -90,7 +114,7 @@ function App() {
       </main>
     </div>
   );
-}
+};
 
 export default App;
 
