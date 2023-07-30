@@ -9,6 +9,10 @@ import SearchBar from './SearchBar';
  * @returns {JSX.Element} The JSX representation of the Navbar component.
  */
 const Navbar = () => {
+
+  const handleFavouritesClick =()=>{
+    console.log('you clicked favourites')
+  }
   return (
     <header>
       <nav className='navbar'>
@@ -18,7 +22,7 @@ const Navbar = () => {
         <ul className='menu-links'>
           <li>HOME PAGE</li>
           <li>GENRES</li>
-          <li>FAVOURITES</li>
+          <li onClick={handleFavouritesClick}>FAVOURITES</li>
         </ul>
         <SearchBar />
       </nav>

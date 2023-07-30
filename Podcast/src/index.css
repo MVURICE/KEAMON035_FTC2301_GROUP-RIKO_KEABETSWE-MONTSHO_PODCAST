@@ -551,3 +551,10 @@ button{
 .range{
   margin-right: 10px;
 }
+
+
+.favourites-header{
+  width: 100%;
+  margin: 2vw;
+  text-align: center;
+}

@@ -22,7 +22,6 @@ const SeasonCard = (props) => {
           <h3 className="seasons-metadata-header">{props.title}</h3>
           <p className="seasons-metadata">{props.episodes} Episodes</p>
           <button onClick={props.handleClick}>play</button>
-          <button>Favourite</button>
         </div>
       </div>
     );

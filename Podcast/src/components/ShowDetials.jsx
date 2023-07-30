@@ -19,6 +19,7 @@ const ShowDetails = ({ show }) => {
   const [selectedTrack, setSelectedTrack] = useState(0);
   const [clickedEpisodeMeta, setClickedEpisodeMeta] = useState('');
   const [favouriteEpisodes, setFavouriteEpisodes] = useState([]);
+  const [showFavouriteEpisodes, setShowFavouriteEpisodes] = useState(false); // New state variable
 
   /**
    * Handles the "Favourite" button click for an episode.
@@ -47,6 +48,11 @@ const ShowDetails = ({ show }) => {
     }
 
     console.log('your favourites are', favouriteEpisodes);
+  };
+
+  const handleFavouriteEpisodes = () => {
+    // Toggle the showFavouriteEpisodes state
+    setShowFavouriteEpisodes(!showFavouriteEpisodes);
   };
 
   /**
@@ -87,15 +93,14 @@ const ShowDetails = ({ show }) => {
     <>
       <div className='seasons'>
         <div className='show-hero-banner'>
-
           <div className='show-image-container'>
-          <img src={backbutton} alt='back button' className='season-back-button' />
+            <img src={backbutton} alt='back button' className='season-back-button' />
             <img className='show-image' src={selectedSeason ? selectedSeason.image : show.image} alt={show.title} />
           </div>
           <br />
           <section className='show-metadata'>
             <h4 className='show-card-title'>{selectedSeason ? selectedSeason.title : show.title}</h4>
-            <button>Favourite</button>
+            <button onClick={handleFavouriteEpisodes}>Favourite</button>
             <br />
             <br />
             <strong>
@@ -122,21 +127,22 @@ const ShowDetails = ({ show }) => {
           )}
         </div>
 
-        <div className='show-seasons'>
-          {!selectedSeason &&
-            show.seasons &&
-            show.seasons.map((season) => (
-              <SeasonCard
-                key={uuidv4()}
-                title={season.title}
-                image={season.image}
-                episodes={season.episodes.length}
-                handleClick={() => handleSeasonClick(season)}
-              />
-            ))}
-        </div>
+        {!showFavouriteEpisodes && !selectedSeason && (
+          <div className='show-seasons'>
+            {show.seasons &&
+              show.seasons.map((season) => (
+                <SeasonCard
+                  key={uuidv4()}
+                  title={season.title}
+                  image={season.image}
+                  episodes={season.episodes.length}
+                  handleClick={() => handleSeasonClick(season)}
+                />
+              ))}
+          </div>
+        )}
 
-        {selectedSeason && (
+        {!showFavouriteEpisodes && selectedSeason && (
           <div className='episodes'>
             <div className='show-episodes'>
               <div className='return-to-seasons'>
@@ -151,7 +157,7 @@ const ShowDetails = ({ show }) => {
                     image={episode.image}
                     play={() => handleEpisodePlay(episode)}
                     description={episode.description}
-                    favourite={()=>handlefavourites(episode)}
+                    favourite={() => handlefavourites(episode)}
                     isFavourite={
                       favouriteEpisodes.some(
                         (favEpisode) => favEpisode.title === episode.title
@@ -162,12 +168,40 @@ const ShowDetails = ({ show }) => {
             </div>
           </div>
         )}
+
+        {showFavouriteEpisodes && (
+          <div className='show-episodes'>
+            <h2 className='favourtes-he'>Your Favorite Episodes</h2>
+            {favouriteEpisodes.length === 0 ? (
+              <p>You haven't added any episodes to your favorites yet.</p>
+            ) : (
+              <div>
+                {favouriteEpisodes.map((episode) => (
+                  <Episodes
+                    key={uuidv4()}
+                    title={episode.title}
+                    image={episode.image}
+                    play={() => handleEpisodePlay(episode)}
+                    description={episode.description}
+                    favourite={() => handlefavourites(episode)}
+                    isFavourite={
+                      favouriteEpisodes.some(
+                        (favEpisode) => favEpisode.title === episode.title
+                      )
+                    }
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
         {selectedTrack && (
           <AudioPlayer selectedTrack={selectedTrack} title={clickedEpisodeMeta.title} episode={clickedEpisodeMeta.episode} />
         )}
       </div>
     </>
   );
-}
+};
 
 export default ShowDetails;
