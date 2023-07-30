@@ -10,13 +10,21 @@ export default function AudioPlayer(props) {
     audioElement.addEventListener("loadedmetadata", handleLoadedMetadata);
     audioElement.addEventListener("timeupdate", handleTimeUpdate);
 
+    const handleBeforeUnload = (event) => {
+      if (isPlaying) {
+        event.preventDefault();
+        event.returnValue = "Are you sure you want to exit page while music is playing"; // Modern browsers require a return value to show the confirmation dialog
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
     return () => {
       audioElement.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audioElement.removeEventListener("timeupdate", handleTimeUpdate);
-
-    
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [props.selectedTrack]);
+  }, [props.selectedTrack, isPlaying]);
 
 
   function handleLoadedMetadata() {
@@ -63,7 +71,7 @@ export default function AudioPlayer(props) {
                 <h4>{props.title}</h4>
                 <h5>Episode {props.episode}</h5>
             </div>
-            <button>favotite</button>
+            <button>favourite</button>
 
         </div>
 

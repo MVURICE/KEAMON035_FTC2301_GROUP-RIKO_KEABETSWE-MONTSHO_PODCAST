@@ -3,6 +3,9 @@ import logo from '../assets/Logo.png';
 import SearchBar from './SearchBar';
 
 function Navbar() {
+
+
+  
   return (
     <header>
       <nav className='navbar'>
