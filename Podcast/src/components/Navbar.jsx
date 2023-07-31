@@ -8,7 +8,7 @@ import SearchBar from './SearchBar';
  * @component
  * @returns {JSX.Element} The JSX representation of the Navbar component.
  */
-const Navbar = () => {
+const Navbar = (props) => {
 
   const handleFavouritesClick =()=>{
     console.log('you clicked favourites')
@@ -24,7 +24,7 @@ const Navbar = () => {
           <li>GENRES</li>
           <li onClick={handleFavouritesClick}>FAVOURITES</li>
         </ul>
-        <SearchBar />
+        <SearchBar podcasts={props.podcasts} setFilteredPodcasts={props.setFilteredPodcasts} />
       </nav>
     </header>
   );
