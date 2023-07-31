@@ -94,11 +94,11 @@ const App = () => {
       <Navbar />
       <main>
         {!selectedShow && (
-          <div>
-            <button onClick={() => setSortOrder(sortOrder === 'A-Z' ? 'Z-A' : 'A-Z')}>
+          <div className='sorting-buttons-control'>
+            <button className='sorting-button' onClick={() => setSortOrder(sortOrder === 'A-Z' ? 'Z-A' : 'A-Z')}>
               {sortOrder === 'A-Z' ? 'Sort Z-A' : 'Sort A-Z'}
             </button>
-            <button onClick={() => setSortOrder(sortOrder === 'ASC_DATE' ? 'DESC_DATE' : 'ASC_DATE')}>
+            <button className='sorting-button' onClick={() => setSortOrder(sortOrder === 'ASC_DATE' ? 'DESC_DATE' : 'ASC_DATE')}>
               {sortOrder === 'ASC_DATE' ? 'Sort by Newest' : 'Sort by Oldest'}
             </button>
           </div>

@@ -100,7 +100,7 @@ const ShowDetails = ({ show }) => {
           <br />
           <section className='show-metadata'>
             <h4 className='show-card-title'>{selectedSeason ? selectedSeason.title : show.title}</h4>
-            <button onClick={handleFavouriteEpisodes}>Favourite</button>
+            <button className='all-favourites-button' onClick={handleFavouriteEpisodes}>All Favourites</button>
             <br />
             <br />
             <strong>
@@ -171,7 +171,7 @@ const ShowDetails = ({ show }) => {
 
         {showFavouriteEpisodes && (
           <div className='show-episodes'>
-            <h2 className='favourtes-he'>Your Favorite Episodes</h2>
+            <h2 className='favourites-header'>Your Favorite Episodes</h2>
             {favouriteEpisodes.length === 0 ? (
               <p>You haven't added any episodes to your favorites yet.</p>
             ) : (
