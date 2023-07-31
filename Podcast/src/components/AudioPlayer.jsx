@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Play from '../assets/play.png'
+import pause from '../assets/pause.png' 
 
 export default function AudioPlayer(props) {
   // State variables to manage the audio player
@@ -75,9 +77,11 @@ export default function AudioPlayer(props) {
   return (
     <div className="audioplayer">
       <div className="audio-metadata">
-        <button onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</button>
-        <div>
-          <h4>{props.title}</h4>
+         <img className="audio-play-pause-image" onClick={handlePlayPause} src={isPlaying ? pause : Play} alt="Play-Pasue button" />
+        {/* <button onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</button> */}
+        <div className="audio-meta-details">
+          <h3>{props.title}</h3>
+          <br /> 
           <h5>Episode {props.episode}</h5>
         </div>
       </div>

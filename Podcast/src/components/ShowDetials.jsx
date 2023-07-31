@@ -21,6 +21,13 @@ const ShowDetails = ({ show }) => {
   const [favouriteEpisodes, setFavouriteEpisodes] = useState([]);
   const [showFavouriteEpisodes, setShowFavouriteEpisodes] = useState(false); // New state variable
 
+
+  const handleSeasonBackbutton =()=>{
+    console.log('y')
+    setSelectedSeason(null)
+    setShowFavouriteEpisodes(false)
+  }
+
   /**
    * Handles the "Favourite" button click for an episode.
    *
@@ -94,7 +101,7 @@ const ShowDetails = ({ show }) => {
       <div className='seasons'>
         <div className='show-hero-banner'>
           <div className='show-image-container'>
-            <img src={backbutton} alt='back button' className='season-back-button' />
+            <img src={backbutton} alt='back button' onClick={handleSeasonBackbutton} className='season-back-button' />
             <img className='show-image' src={selectedSeason ? selectedSeason.image : show.image} alt={show.title} />
           </div>
           <br />

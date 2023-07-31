@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import ShowDetails from './components/ShowDetials';
 import genreNames from './GenresNames';
 
-
 /**
  * Main functional component for the App.
  * Displays a list of podcasts and allows sorting and selecting individual shows.
@@ -68,9 +67,13 @@ const App = () => {
     />
   ));
 
+  const handleHomePage =()=>{
+    setSelectedShow(null)
+  }
+
   return (
     <div className='body'>
-      <Navbar podcasts={podcasts} setFilteredPodcasts={setFilteredPodcasts} />
+      <Navbar podcasts={podcasts} setFilteredPodcasts={setFilteredPodcasts} homePage={handleHomePage}  />
       <main>
         {!selectedShow && (
           <div className='sorting-buttons-control'>

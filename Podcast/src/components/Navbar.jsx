@@ -20,7 +20,7 @@ const Navbar = (props) => {
           <img className='logo' src={logo} alt='Logo' />
         </div>
         <ul className='menu-links'>
-          <li>HOME PAGE</li>
+          <li onClick={props.homePage}>HOME PAGE</li>
           <li>GENRES</li>
           <li onClick={handleFavouritesClick}>FAVOURITES</li>
         </ul>
