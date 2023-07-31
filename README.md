@@ -89,3 +89,7 @@ Keabetswe Maurice Montsho
 ## Wireframe
 
 https://www.figma.com/file/CbgFr91TLCWHjcp1WEvPK6/Podcastwire-Frame?type=design&node-id=23%3A180&mode=design&t=LZ1LGIigetKKjqlL-1
+
+## LINK
+
+    https://64c7d26f2d663311b5576d9a--gleeful-cocada-47c036.netlify.app/
