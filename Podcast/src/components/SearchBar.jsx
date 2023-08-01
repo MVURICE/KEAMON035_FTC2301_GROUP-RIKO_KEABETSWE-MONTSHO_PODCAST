@@ -12,7 +12,7 @@ const SearchBar = ({ podcasts, setFilteredPodcasts }) => {
 
   const options = {
     keys: ['title'],
-    threshold: 0.3, // Fuzzy search threshold (0.0 - 1.0). Lower values result in more matches.
+    threshold: 0.3, 
   };
 
   const fuse = new Fuse(podcasts, options);

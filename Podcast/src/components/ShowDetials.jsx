@@ -13,6 +13,7 @@ import backbutton from '../assets/backbutton.png';
  * @param {Object} props.show - The show object containing information about the TV show.
  * @returns {JSX.Element} The JSX representation of the ShowDetails component.
  */
+
 const ShowDetails = ({ show }) => {
   // State variables
   const [selectedSeason, setSelectedSeason] = useState(null);
@@ -23,11 +24,12 @@ const ShowDetails = ({ show }) => {
 
 
   const handleSeasonBackbutton =()=>{
-    console.log('y')
     setSelectedSeason(null)
     setShowFavouriteEpisodes(false)
   }
 
+  // ✅ User can mark specific episodes as favourites to find them again
+  // ✅ User is able to remove episodes from their favourites
   /**
    * Handles the "Favourite" button click for an episode.
    *
@@ -35,7 +37,6 @@ const ShowDetails = ({ show }) => {
    * @returns {void}
    */
   const handlefavourites = (episode) => {
-    console.log('you clicked favourite');
 
     const isEpisodeInFavourites = favouriteEpisodes.some(
       (favEpisode) => favEpisode.title === episode.title
@@ -57,6 +58,7 @@ const ShowDetails = ({ show }) => {
     console.log('your favourites are', favouriteEpisodes);
   };
 
+  // ✅ User can see the show and season of any episode in their favourites list
   const handleFavouriteEpisodes = () => {
     // Toggle the showFavouriteEpisodes state
     setShowFavouriteEpisodes(!showFavouriteEpisodes);
@@ -102,7 +104,7 @@ const ShowDetails = ({ show }) => {
         <div className='show-hero-banner'>
           <div className='show-image-container'>
             <img src={backbutton} alt='back button' onClick={handleSeasonBackbutton} className='season-back-button' />
-            <img className='show-image' src={selectedSeason ? selectedSeason.image : show.image} alt={show.title} />
+            <img className='show-image' src={selectedSeason ? selectedSeason.image : show.image} alt={selectedSeason? selectedSeason.title : show.title} />
           </div>
           <br />
           <section className='show-metadata'>

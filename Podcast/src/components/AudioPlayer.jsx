@@ -6,7 +6,7 @@ export default function AudioPlayer(props) {
   // State variables to manage the audio player
   const [currentTime, setCurrentTime] = useState(0); // Current playback time of the audio
   const [duration, setDuration] = useState(0); // Total duration of the audio
-  const [isPlaying, setIsPlaying] = useState(false); // Flag to indicate if the audio is currently playing or paused
+  const [isPlaying, setIsPlaying] = useState(false); 
 
   // useEffect to handle side effects when component mounts, updates, or unmounts
   useEffect(() => {
@@ -22,7 +22,6 @@ export default function AudioPlayer(props) {
       if (isPlaying) {
         event.preventDefault();
         event.returnValue = "Are you sure you want to exit the page while music is playing";
-        // Modern browsers require a return value to show the confirmation dialog
       }
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -78,7 +77,6 @@ export default function AudioPlayer(props) {
     <div className="audioplayer">
       <div className="audio-metadata">
          <img className="audio-play-pause-image" onClick={handlePlayPause} src={isPlaying ? pause : Play} alt="Play-Pasue button" />
-        {/* <button onClick={handlePlayPause}>{isPlaying ? "Pause" : "Play"}</button> */}
         <div className="audio-meta-details">
           <h3>{props.title}</h3>
           <br /> 
@@ -98,10 +96,9 @@ export default function AudioPlayer(props) {
           />
         )}
         {formatTimestamp(currentTime)} / {formatTimestamp(duration)}
-        <div>{/* Additional controls or information can be added here */}</div>
       </div>
 
-      {/* The audio element with the selected audio track */}
+
       <audio id="audio-element">
         <source src={props.selectedTrack} />
       </audio>

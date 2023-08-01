@@ -19,7 +19,7 @@ header {
   width: 100%;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-size: 1.6vw;
-  background-image: url(https://s3-alpha-sig.figma.com/img/c1b8/f2ad/362d08192e3fa2da0d429a0ec868a981?Expires=1690761600&Signature=EFwL-UvYgMVs4P0MBSaCUWFwSoKhujZAyLtM3mbWjX4e3xJiaFABnDJD~ue7X2eCzQvV3JIf44ymU8wnf1jTuadwrjVUGKINkOgfdHiBk3P7wy2P0Me7m9mW1-Quy3dQShqIy2dUOcmNIa3bkR5XnsYM~3sgAVrXuYax4E4xcr3tmcqCpQA3Mvl7K0acnvTAO8Kzsux0l~-ncHkvM6huiQk3XzfmMCRknz5-Egq~2sl2Z16Z~GUfZz8-iNRhwVCbSJbj9DnRh6xogyz0-FPktFDdCOPw0U7VAw-jhqIoK0dAcJ2AZJZcMCYWMsOi4wQEJLA6qggE72ZjKfgvkEI7MQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4);
+  background-image: url(https://s3-alpha-sig.figma.com/img/c1b8/f2ad/362d08192e3fa2da0d429a0ec868a981?Expires=1691971200&Signature=b3gSwbprzDJpK~3H1HWZ1v5lrTbXS2nlycmMSS98eNHiHEHt274zdp3tRWKM799AzfPMl3gMnQHAayQwGX41dgmU39dy8wtZ~TL1etZXrTmBB64MxFYzO9wfGgN1VjwvVCCBUtLEgnbuXbF7UyX1aZV8tmXAn0zraMJddEZs-5uOKEr-HldeiYcSCpRFJ4tqN7RgX-MN72c7ab7HnrjaRpfhE-YDqImssz0PpBvfI1k4LcMN9xO8Jqip6SlmsnNKMt-PUzOs7IzDvLsMacL07MVd-nuzIDsIbVRnAjdDAx0Dkar~9q1zESre9qvZdYObaMtrQ-CkK8Ib5gEHNUgSjQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center
@@ -382,21 +382,15 @@ button{
 
 
 /* ***********************seasons-card************************** */
-/* .seasons{
-  width: 100%;
-} */
+
 .seasons-card{
   display: flex;
   border-radius: 0.6rem;
   margin: 1vw 3vw;
   width: 25vw;
-
   min-width: 180px;
-  /* border: solid rgb(139, 21, 21) 2px; */
   background-color: white;
   box-shadow: 0.3vw 0.3vw 0.3vw 0.3vw rgba(204, 27, 27, 0.25);
-
-
 
 }
 

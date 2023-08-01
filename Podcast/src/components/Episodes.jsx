@@ -22,7 +22,6 @@ const Episodes = (props) => {
         <div className="episode-name-container">
           <h3 className="episodes-metadata-header">{props.title}</h3>
           <div className="episode-buttons">
-            {/* <button onClick={props.play}>Load</button> */}
             <img className='favourite-button-image'  onClick={props.play} src={loadPodcast} alt="load-Podcast" />
 
             <img className='favourite-button-image' onClick={props.favourite} src={toggleFavouriteButton ? filledHeart : emptyHeart} alt="favourtie" />

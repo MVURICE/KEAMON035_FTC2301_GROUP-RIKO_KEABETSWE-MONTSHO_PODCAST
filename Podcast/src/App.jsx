@@ -4,6 +4,14 @@ import Navbar from './components/Navbar';
 import ShowDetails from './components/ShowDetials';
 import genreNames from './GenresNames';
 
+
+
+// ✅ All show data loaded via a fetch call from the https://podcast-api.netlify.app/shows
+
+// ✅ When viewing a specific show, data is loaded via fetch from individual show endpoint
+
+// ✅ There is a loading state while initial data is being loaded
+
 /**
  * Main functional component for the App.
  * Displays a list of podcasts and allows sorting and selecting individual shows.
@@ -43,6 +51,14 @@ const App = () => {
       });
   };
 
+
+//   ✅ User can arrange the list of shows by title from A-Z
+
+// ✅ User can arrange the list of shows by title from Z-A
+
+// ✅ User can arrange the list of shows by date updated in ascending order
+
+// ✅ User can arrange the list of shows by date updated in descending order
   const sortedPodcasts = [...(filteredPodcasts.length ? filteredPodcasts : podcasts)].sort((a, b) => {
     if (sortOrder === 'A-Z') {
       return a.title.localeCompare(b.title);
@@ -54,6 +70,17 @@ const App = () => {
       return new Date(b.updated) - new Date(a.updated);
     }
   });
+
+  // ✅ User can see the name of all available shows on the platform
+
+  // ✅ User sees preview image of shows when browsing
+  
+  // ✅ User sees the amount of seasons per show as a number when browsing
+  
+  // ✅ User sees a human-readable date as to when a show was last updated
+  
+  // ✅ User sees what genres (as genre titles) a show is associated with when browsing
+
 
   const showElements = sortedPodcasts.map((show) => (
     <Card
