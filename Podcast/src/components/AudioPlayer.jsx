@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import Play from '../assets/play.png'
-import pause from '../assets/pause.png' 
 
-export default function AudioPlayer(props) {
-  // State variables to manage the audio player
-  const [currentTime, setCurrentTime] = useState(0); // Current playback time of the audio
-  const [duration, setDuration] = useState(0); // Total duration of the audio
-  const [isPlaying, setIsPlaying] = useState(false); 
+import React, { useState, useEffect, useRef } from "react";
+import Play from '../assets/play.png';
+import Pause from '../assets/pause.png';
 
-  // useEffect to handle side effects when component mounts, updates, or unmounts
+function useAudioPlayer(props) {
+  const audioRef = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+
   useEffect(() => {
-    // Get the audio element from the DOM
-    const audioElement = document.getElementById("audio-element");
+    const audioElement = audioRef.current;
 
-    // Event listeners to update state when audio metadata and time change
+    const handleLoadedMetadata = () => setDuration(audioElement.duration);
+    const handleTimeUpdate = () => setCurrentTime(audioElement.currentTime);
+
     audioElement.addEventListener("loadedmetadata", handleLoadedMetadata);
     audioElement.addEventListener("timeupdate", handleTimeUpdate);
 
-    // Event listener to prompt confirmation before leaving the page if audio is playing
     const handleBeforeUnload = (event) => {
       if (isPlaying) {
         event.preventDefault();
@@ -26,7 +26,6 @@ export default function AudioPlayer(props) {
     };
     window.addEventListener("beforeunload", handleBeforeUnload);
 
-    // Clean up event listeners when the component is unmounted
     return () => {
       audioElement.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audioElement.removeEventListener("timeupdate", handleTimeUpdate);
@@ -34,28 +33,8 @@ export default function AudioPlayer(props) {
     };
   }, [props.selectedTrack, isPlaying]);
 
-  // Function to handle loaded metadata event (duration available)
-  function handleLoadedMetadata() {
-    const audioElement = document.getElementById("audio-element");
-    setDuration(audioElement.duration);
-  }
-
-  // Function to handle time update event (current playback time changes)
-  function handleTimeUpdate() {
-    const audioElement = document.getElementById("audio-element");
-    setCurrentTime(audioElement.currentTime);
-  }
-
-  // Function to format timestamp from seconds to "mm:ss" format
-  function formatTimestamp(timeInSeconds) {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = Math.floor(timeInSeconds % 60);
-    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-  }
-
-  // Function to handle Play/Pause button click
-  function handlePlayPause() {
-    const audioElement = document.getElementById("audio-element");
+  const handlePlayPause = () => {
+    const audioElement = audioRef.current;
     if (audioElement.paused) {
       audioElement.play();
       setIsPlaying(true);
@@ -63,43 +42,56 @@ export default function AudioPlayer(props) {
       audioElement.pause();
       setIsPlaying(false);
     }
-  }
+  };
 
-  // Function to handle Seek slider change (change audio playback time)
-  function handleRangeChange(event) {
-    const audioElement = document.getElementById("audio-element");
+  const handleRangeChange = (event) => {
+    const audioElement = audioRef.current;
     const seekTime = (event.target.value / 100) * duration;
     audioElement.currentTime = seekTime;
-  }
+  };
 
-  // JSX of the AudioPlayer component
+  return { audioRef, currentTime, duration, isPlaying, handlePlayPause, handleRangeChange };
+}
+
+export default function AudioPlayer(props) {
+  const { audioRef, currentTime, duration, isPlaying, handlePlayPause, handleRangeChange } = useAudioPlayer(props);
+
+  const formatTimestamp = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  const renderControls = () => (
+    <>
+      <input
+        className="range"
+        type="range"
+        min="0"
+        max="100"
+        value={(currentTime / duration) * 100}
+        onChange={handleRangeChange}
+      />
+      {formatTimestamp(currentTime)} / {formatTimestamp(duration)}
+    </>
+  );
+
   return (
     <div className="audioplayer">
       <div className="audio-metadata">
-         <img className="audio-play-pause-image" onClick={handlePlayPause} src={isPlaying ? pause : Play} alt="Play-Pasue button" />
+        <img className="audio-play-pause-image" onClick={handlePlayPause} src={isPlaying ? Pause : Play} alt="Play-Pause button" />
         <div className="audio-meta-details">
           <h3>{props.title}</h3>
-          <br /> 
+          <br />
           <h5>Episode {props.episode}</h5>
         </div>
       </div>
 
       <div className="audio-controls">
-        {duration > 0 && (
-          <input
-            className="range"
-            type="range"
-            min="0"
-            max="100"
-            value={(currentTime / duration) * 100}
-            onChange={handleRangeChange}
-          />
-        )}
-        {formatTimestamp(currentTime)} / {formatTimestamp(duration)}
+        {duration > 0 && renderControls()}
       </div>
 
-
-      <audio id="audio-element">
+      <audio ref={audioRef}>
         <source src={props.selectedTrack} />
       </audio>
     </div>
