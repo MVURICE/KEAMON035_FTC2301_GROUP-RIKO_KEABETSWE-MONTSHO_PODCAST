@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import Play from '../assets/play.png';
 import Pause from '../assets/pause.png';
@@ -12,8 +11,17 @@ function useAudioPlayer(props) {
   useEffect(() => {
     const audioElement = audioRef.current;
 
+    const storedProgress = localStorage.getItem(`progress_${props.selectedTrack}`);
+    if (storedProgress) {
+      audioElement.currentTime = parseFloat(storedProgress);
+      setCurrentTime(parseFloat(storedProgress));
+    }
+
     const handleLoadedMetadata = () => setDuration(audioElement.duration);
-    const handleTimeUpdate = () => setCurrentTime(audioElement.currentTime);
+    const handleTimeUpdate = () => {
+      setCurrentTime(audioElement.currentTime);
+      localStorage.setItem(`progress_${props.selectedTrack}`, audioElement.currentTime);
+    };
 
     audioElement.addEventListener("loadedmetadata", handleLoadedMetadata);
     audioElement.addEventListener("timeupdate", handleTimeUpdate);
@@ -48,6 +56,8 @@ function useAudioPlayer(props) {
     const audioElement = audioRef.current;
     const seekTime = (event.target.value / 100) * duration;
     audioElement.currentTime = seekTime;
+    setCurrentTime(seekTime);
+    localStorage.setItem(`progress_${props.selectedTrack}`, seekTime);
   };
 
   return { audioRef, currentTime, duration, isPlaying, handlePlayPause, handleRangeChange };
@@ -79,7 +89,12 @@ export default function AudioPlayer(props) {
   return (
     <div className="audioplayer">
       <div className="audio-metadata">
-        <img className="audio-play-pause-image" onClick={handlePlayPause} src={isPlaying ? Pause : Play} alt="Play-Pause button" />
+        <img
+          className="audio-play-pause-image"
+          onClick={handlePlayPause}
+          src={isPlaying ? Pause : Play}
+          alt="Play-Pause button"
+        />
         <div className="audio-meta-details">
           <h3>{props.title}</h3>
           <br />
