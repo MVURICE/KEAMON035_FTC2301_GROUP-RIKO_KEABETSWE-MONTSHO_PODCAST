@@ -2,31 +2,20 @@
 import React, { useState } from 'react';
 import logo from '../assets/Logo.png';
 import SearchBar from './SearchBar';
+import genreNames from '../GenresNames'; // Make sure to import your genre data
 
-const genres = {
-  1: 'Personal Growth',
-  2: 'True Crime and Investigative Journalism',
-  3: 'History',
-  4: 'Comedy',
-  5: 'Entertainment',
-  6: 'Business',
-  7: 'Fiction',
-  8: 'News',
-  9: 'Kids and Family',
-};
-
-const Navbar = (props) => {
-  const [selectedGenre, setSelectedGenre] = useState(null);
+const Navbar = ({ podcasts, setFilteredPodcasts, homePage, handleGenreFilter }) => {
+  const [selectedGenre, setSelectedGenre] = useState('0'); // Initialize with default value
 
   const handleGenreChange = (event) => {
     const selectedValue = event.target.value;
-    setSelectedGenre(selectedValue !== '0' ? selectedValue : null);
-    // Perform filtering or other actions based on the selected genre
-    // For example: props.filterByGenre(selectedValue);
+    setSelectedGenre(selectedValue);
+    handleGenreFilter(selectedValue); // Call the filter function on genre change
   };
 
   const handleFavouritesClick = () => {
-    console.log('you clicked favourites');
+    console.log('You clicked favorites');
+    // Implement your logic for handling favorites click
   };
 
   return (
@@ -36,21 +25,21 @@ const Navbar = (props) => {
           <img className='logo' src={logo} alt='Logo' />
         </div>
         <ul className='menu-links'>
-          <li onClick={props.homePage}>HOME PAGE</li>
+          <li onClick={homePage}>HOME PAGE</li>
           <li>
             <label htmlFor='genres'>GENRES:</label>
-            <select id='genres' onChange={handleGenreChange} value={selectedGenre || '0'}>
+            <select id='genres' onChange={handleGenreChange} value={selectedGenre}>
               <option value='0'>Select a genre</option>
-              {Object.keys(genres).map((key) => (
+              {Object.keys(genreNames).map((key) => (
                 <option key={key} value={key}>
-                  {genres[key]}
+                  {genreNames[key]}
                 </option>
               ))}
             </select>
           </li>
           <li onClick={handleFavouritesClick}>FAVOURITES</li>
         </ul>
-        <SearchBar podcasts={props.podcasts} setFilteredPodcasts={props.setFilteredPodcasts} />
+        <SearchBar podcasts={podcasts} setFilteredPodcasts={setFilteredPodcasts} />
       </nav>
     </header>
   );

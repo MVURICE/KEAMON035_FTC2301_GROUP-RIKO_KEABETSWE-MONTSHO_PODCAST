@@ -127,8 +127,6 @@
 
 // export default App;
 
-
-
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
 import Card from './components/Card';
@@ -177,6 +175,17 @@ const App = () => {
       });
   };
 
+  const handleGenreFilter = (selectedGenre) => {
+    if (selectedGenre === '0') {
+      setFilteredPodcasts([]);
+    } else {
+      const filtered = podcasts.filter((podcast) =>
+        podcast.genres.includes(parseInt(selectedGenre))
+      );
+      setFilteredPodcasts(filtered);
+    }
+  };
+
   const sortedPodcasts = [
     ...(filteredPodcasts.length ? [...filteredPodcasts] : [...podcasts]),
   ].sort((a, b) => {
@@ -191,7 +200,7 @@ const App = () => {
     }
   });
 
-  const showElements = sortedPodcasts.map((show) => (
+  const showElements = (filteredPodcasts.length ? filteredPodcasts : sortedPodcasts).map((show) => (
     <Card
       key={show.id}
       title={show.title}
@@ -209,7 +218,12 @@ const App = () => {
 
   return (
     <div className='body'>
-      <Navbar podcasts={podcasts} setFilteredPodcasts={setFilteredPodcasts} homePage={handleHomePage} />
+      <Navbar
+        podcasts={podcasts}
+        setFilteredPodcasts={setFilteredPodcasts}
+        homePage={handleHomePage}
+        handleGenreFilter={handleGenreFilter} // Pass the filter function to Navbar
+      />
       <main>
         {!selectedShow && (
           <div className='sorting-buttons-control'>
